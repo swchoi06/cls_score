@@ -1,0 +1,19 @@
+<h2>Listing scores</h2>
+
+<table class="table">
+  <tr>
+    <th>User name</th>
+    <th>Team</th>
+    <th>Score</th>
+    <th></th>
+  </tr>
+
+<% @scores.each do |score| %>
+  <tr>
+    <td><%= score.user_name %></td>
+    <td><%= score.selected_team %></td>
+    <td><%= score.score %></td>
+    <td><%= link_to 'Destroy', score, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>

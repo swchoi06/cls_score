@@ -1,0 +1,15 @@
+<table class = "table">
+  <tr>
+    <th> Course Name </th>
+    <th> Number Of Team </th>
+    <th> Max score </th>
+    <th></th>
+  </tr>
+  <tr>
+    <td><%= @conference.name %></td>
+    <td><%= @conference.number_of_team %></td>
+    <td><%= @conference.max_score %> </td>
+    <td><%= link_to 'Edit', :action => "edit", :conference => @conference%> </td>
+  </tr> 
+</table>
+

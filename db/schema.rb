@@ -11,7 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131217160829) do
+ActiveRecord::Schema.define(version: 20131217164739) do
+
+  create_table "conferences", force: true do |t|
+    t.string   "name"
+    t.integer  "number_of_team"
+    t.integer  "max_score"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "scores", force: true do |t|
+    t.string   "user_name"
+    t.integer  "selected_team"
+    t.integer  "score"
+    t.integer  "conference_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

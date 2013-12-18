@@ -1,10 +1,19 @@
 ClsScore::Application.routes.draw do
-  root :to => "score#show"
-  get "score/show"
-  get "score/new"
-  get "score/create"
-  get "score/delete"
   devise_for :users
+
+  resources :scores
+  root :to => "scores#new"
+  get "new", to: "scores#new"
+
+  delete '/delete_scores' => 'admin#delete_all_scores'
+
+  get "admin", to: "admin#preference"
+  get "admin/preference"
+  get "admin/statistic"
+  get "admin/edit"
+  get "admin/scores"
+  patch "admin", to: "admin#update"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,0 +1,33 @@
+<%= form_for(@score) do |f| %>
+  <% if @score.errors.any? %>
+    <div id="error_explanation">
+      <h4><%= pluralize(@score.errors.count, "error") %> prohibited this score from being saved:</h4>
+
+      <ul>
+      <% @score.errors.each_with_index do |msg, i| %>
+        <li><%= msg[1] %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <label>Student Number(ex 2013-xxxxx)<br/> </label>
+    <%= f.text_field :user_name %>
+  </div>
+ 
+  <div class ="field">
+  	<label>Select Team<br/></label>
+    <%= select(:score, :selected_team,@teams) %> <br/> 
+  </div>
+  
+  <div class="field">
+	  <label>Select Score<br/></label>
+    <%= select(:score, :score, @scores) %>
+	  <br/> <br/>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
