@@ -12,6 +12,7 @@ ClsScore::Application.routes.draw do
   get "admin/statistic"
   get "admin/edit"
   get "admin/scores"
+  get "statistic", to: "admin#statistic"
   patch "admin", to: "admin#update"
 
   # The priority is based upon order of creation: first created -> highest priority.
