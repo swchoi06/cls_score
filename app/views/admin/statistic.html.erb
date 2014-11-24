@@ -17,3 +17,24 @@
   <% end %>
 
 </table>
+
+
+<%= javascript_include_tag('html5-canvas-bar-graph.js') %>
+<canvas id="graph1"></canvas>
+<script>(funciton() {
+    var cxt = document.getElementById("graph1").getContext("2d");
+    var graph = new BarGraph(ctx);
+    var teamArr = [];
+    var scoreArr = [];
+
+    graph.margin = 2;
+    graph.width = 450;
+    graph.height = 150;
+    <% @avg_score.each do |s| %>
+        teamArr.push(<%= s[0] %>);
+        scoreArr.push(<%= s[2] %>);
+    <% end %>
+    graph.xAxisLabelArr = teamArr;
+    graph.update(scoreArr);
+})
+</script>
