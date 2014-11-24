@@ -8,7 +8,7 @@ class ScoresController < ApplicationController
   end
 
   def new
-    @conference = User.find(1).conference
+    @conference = current_user.conference 
     @score = Score.new
 
     @teams = team_gen(@conference.number_of_team)
@@ -17,13 +17,13 @@ class ScoresController < ApplicationController
 
   def create
     @score = Score.new(score_params)
-    @score.conference = User.find(1).conference
+    @score.conference = current_user.conference 
     @score.save
     respond_to do |format|
       if @score.save
         format.html { redirect_to @score, notice: 'Score was successfully created.' }
       else
-        @conference = User.find(1).conference
+        @conference = current_user.conference 
 
         @teams = team_gen(@conference.number_of_team)
         @scores = score_gen(@conference.max_score)
