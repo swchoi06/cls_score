@@ -8,7 +8,8 @@ class ScoresController < ApplicationController
   end
 
   def new
-    @conference = current_user.conference 
+#    @conference = current_user.conference 
+    @conference = Conference.all[0]; 
     @score = Score.new
 
     @teams = team_gen(@conference.number_of_team)
@@ -17,13 +18,16 @@ class ScoresController < ApplicationController
 
   def create
     @score = Score.new(score_params)
-    @score.conference = current_user.conference 
+#    @score.conference = current_user.conference 
+    @score.conference = Conference.all[0]; 
     @score.save
     respond_to do |format|
       if @score.save
         format.html { redirect_to @score, notice: 'Score was successfully created.' }
       else
-        @conference = current_user.conference 
+
+        @conference = Conference.all[0]; 
+        #@conference = current_user.conference 
 
         @teams = team_gen(@conference.number_of_team)
         @scores = score_gen(@conference.max_score)

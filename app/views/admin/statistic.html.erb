@@ -2,6 +2,25 @@
 
 <h4> <%= link_to 'Delete all Data', delete_scores_path, method: :delete, data: {confirm: 'Are you sure?'} %> </h4>
 
+
+<canvas id="graph1"></canvas>
+<script>
+    var cxt = document.getElementById("graph1").getContext("2d");
+    var graph = new BarGraph(cxt);
+    var teamArr = [];
+    var scoreArr = [];
+
+    graph.margin = 2;
+    graph.width =800; 
+    graph.height = 300;
+    <% @avg_score.each do |s| %>
+        teamArr.push("<%= s[0]  %>");
+        scoreArr.push(<%= (s[2]*10) %>);
+    <% end %>
+    graph.xAxisLabelArr = teamArr;
+    graph.update(scoreArr);
+</script>
+
 <table class = "table table-striped table-condensed">
   <tr>
     <th>Team</th>
@@ -17,21 +36,3 @@
   <% end %>
 
 </table>
-
-<canvas id="graph1"></canvas>
-<script>
-    var cxt = document.getElementById("graph1").getContext("2d");
-    var graph = new BarGraph(cxt);
-    var teamArr = [];
-    var scoreArr = [];
-
-    graph.margin = 2;
-    graph.width = 450;
-    graph.height = 150;
-    <% @avg_score.each do |s| %>
-        teamArr.push("<%= s[0]  %>");
-        scoreArr.push(<%= s[2] %>);
-    <% end %>
-    graph.xAxisLabelArr = teamArr;
-    graph.update(scoreArr);
-</script>
